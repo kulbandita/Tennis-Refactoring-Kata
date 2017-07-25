@@ -19,8 +19,30 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
+    public String convertScore(int scoreValue) {
+        switch (scoreValue) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+            default:
+                return "";
+        }
+    }
+
     public boolean isAll() {
-        if (m_score1 == m_score2) {
+        if (m_score1 == m_score2 && m_score1 < 3) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isDeuce() {
+        if (m_score1 == m_score2 && m_score1 >= 3) {
             return true;
         }
         return false;
@@ -37,20 +59,10 @@ public class TennisGame1 implements TennisGame {
         String score = "";
         int tempScore = 0;
         if (isAll()) {
-            switch (m_score1) {
-                case 0:
-                    score = "Love-All";
-                    break;
-                case 1:
-                    score = "Fifteen-All";
-                    break;
-                case 2:
-                    score = "Thirty-All";
-                    break;
-                default:
-                    score = "Deuce";
-                    break;
-            }
+            score = convertScore(m_score1);
+            score = score + "-All";
+        } else if (isDeuce()) {
+            score = "Deuce";
         } else if (isWinner()) {
             int minusResult = m_score1 - m_score2;
             if (minusResult == 1) {
