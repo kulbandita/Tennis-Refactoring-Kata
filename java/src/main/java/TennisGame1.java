@@ -57,7 +57,6 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore = 0;
         if (isAll()) {
             score = convertScore(m_score1);
             score = score + "-All";
@@ -75,28 +74,7 @@ public class TennisGame1 implements TennisGame {
                 score = "Win for " + player2Name;
             }
         } else {
-            for (int i = 1; i < 3; i++) {
-                if (i == 1) {
-                    tempScore = m_score1;
-                } else {
-                    score += "-";
-                    tempScore = m_score2;
-                }
-                switch (tempScore) {
-                    case 0:
-                        score += "Love";
-                        break;
-                    case 1:
-                        score += "Fifteen";
-                        break;
-                    case 2:
-                        score += "Thirty";
-                        break;
-                    case 3:
-                        score += "Forty";
-                        break;
-                }
-            }
+            score = convertScore(m_score1) + "-" + convertScore(m_score2);
         }
         return score;
     }
