@@ -19,10 +19,17 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
+    public boolean isLove() {
+        if (m_score1 == m_score2) {
+            return true;
+        }
+        return false;
+    }
+
     public String getScore() {
         String score = "";
         int tempScore = 0;
-        if (m_score1 == m_score2) {
+        if (isLove()) {
             switch (m_score1) {
                 case 0:
                     score = "Love-All";
